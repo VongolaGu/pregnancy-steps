@@ -2,110 +2,116 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>孕期步数激励计划 - 安全第一，健康相伴</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>孕期步数激励计划</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
         }
         
         body {
             background-color: #f9f7fe;
             color: #333;
-            line-height: 1.6;
-            padding: 20px;
+            line-height: 1.5;
+            padding: 0;
             background-image: linear-gradient(to bottom, #f0f7ff 0%, #f9f7fe 100%);
+            -webkit-tap-highlight-color: transparent;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
+            padding: 15px;
         }
         
         header {
             text-align: center;
-            padding: 30px 20px;
+            padding: 20px 15px;
             background: linear-gradient(135deg, #8a6de9 0%, #5c4bc4 100%);
             color: white;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(92, 75, 196, 0.2);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 20px rgba(92, 75, 196, 0.2);
         }
         
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
             font-weight: 700;
+            letter-spacing: -0.5px;
         }
         
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1rem;
             opacity: 0.9;
-            max-width: 800px;
+            max-width: 100%;
             margin: 0 auto;
+            line-height: 1.4;
         }
         
         .card {
             background: white;
-            border-radius: 18px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        .card:active {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         }
         
         .card-title {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             color: #5c4bc4;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
         }
         
         .card-title i {
-            margin-right: 12px;
-            font-size: 1.6rem;
+            margin-right: 10px;
+            font-size: 1.3rem;
         }
         
         .safety-badge {
             display: inline-block;
             background: #ff6b6b;
             color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
+            padding: 6px 15px;
+            border-radius: 30px;
             font-weight: 600;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+            margin-bottom: 12px;
+            box-shadow: 0 3px 8px rgba(255, 107, 107, 0.3);
+            font-size: 0.9rem;
         }
         
         .warning-box {
             background: #fff3f3;
-            border-left: 5px solid #ff6b6b;
-            padding: 20px;
+            border-left: 4px solid #ff6b6b;
+            padding: 15px;
             border-radius: 0 10px 10px 0;
-            margin: 20px 0;
+            margin: 15px 0;
         }
         
         .warning-title {
             color: #d32f2f;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
+            font-size: 1rem;
         }
         
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
         }
         
         .calculator {
@@ -113,23 +119,26 @@
         }
         
         .input-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 600;
             color: #555;
+            font-size: 0.95rem;
         }
         
         input[type="number"] {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             border: 2px solid #ddd;
-            border-radius: 12px;
-            font-size: 1.2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
             transition: border 0.3s;
+            -webkit-appearance: none;
+            appearance: none;
         }
         
         input[type="number"]:focus {
@@ -138,77 +147,85 @@
         }
         
         .checkbox-group {
-            margin: 20px 0;
+            margin: 15px 0;
             display: flex;
             align-items: center;
         }
         
         .checkbox-group input {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            flex-shrink: 0;
         }
         
         .checkbox-group label {
             margin-bottom: 0;
+            font-size: 0.95rem;
+            line-height: 1.4;
         }
         
         .btn {
             display: block;
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             background: linear-gradient(135deg, #5c4bc4 0%, #8a6de9 100%);
             color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 1.2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 10px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(92, 75, 196, 0.3);
+            -webkit-tap-highlight-color: rgba(92, 75, 196, 0.3);
         }
         
         .btn:active {
             transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(92, 75, 196, 0.4);
         }
         
         .quick-steps {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 10px;
+            margin-bottom: 20px;
         }
         
         .quick-step-btn {
-            flex: 1;
-            min-width: 120px;
-            padding: 12px 5px;
+            padding: 12px 8px;
             background: #e8f0ff;
             border: 2px solid #5c4bc4;
-            border-radius: 10px;
+            border-radius: 8px;
             color: #5c4bc4;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 0.9rem;
+            text-align: center;
+            -webkit-tap-highlight-color: rgba(92, 75, 196, 0.2);
         }
         
-        .quick-step-btn:hover {
+        .quick-step-btn:active {
             background: #5c4bc4;
             color: white;
-            transform: translateY(-3px);
+            transform: translateY(-2px);
+        }
+        
+        .quick-step-btn small {
+            display: block;
+            font-weight: normal;
+            font-size: 0.8rem;
+            margin-top: 3px;
+            opacity: 0.8;
         }
         
         .result-box {
             background: white;
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 30px;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 25px;
             text-align: center;
             border: 2px dashed #ddd;
             transition: all 0.3s;
@@ -220,41 +237,54 @@
         }
         
         .result-amount {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
             color: #5c4bc4;
-            margin: 15px 0;
+            margin: 10px 0;
+            line-height: 1;
         }
         
         .result-text {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #555;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .result-detail {
             color: #777;
-            font-size: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
         
         .penalty-notice {
             color: #ff6b6b;
             font-weight: 600;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            padding: 8px;
+            background-color: #fff3f3;
+            border-radius: 6px;
+        }
+        
+        .reward-table-container {
+            overflow-x: auto;
             margin-top: 15px;
+            border-radius: 10px;
+            -webkit-overflow-scrolling: touch;
         }
         
         .reward-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            min-width: 500px;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
         .reward-table th, .reward-table td {
-            padding: 18px 15px;
+            padding: 14px 10px;
             text-align: center;
+            font-size: 0.9rem;
         }
         
         .reward-table thead {
@@ -266,7 +296,7 @@
             background-color: #f9f9ff;
         }
         
-        .reward-table tbody tr:hover {
+        .reward-table tbody tr:active {
             background-color: #f0f4ff;
         }
         
@@ -287,32 +317,43 @@
         
         .expert-tip {
             background: #e8f4ff;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 30px;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
             position: relative;
-            border-left: 5px solid #2196F3;
+            border-left: 4px solid #2196F3;
         }
         
         .expert-tip i {
             color: #2196F3;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 15px;
+            left: 15px;
         }
         
         .expert-tip-content {
-            margin-left: 40px;
+            margin-left: 35px;
+        }
+        
+        .expert-tip-content h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #2196F3;
+        }
+        
+        .expert-tip-content p {
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
         
         footer {
             text-align: center;
-            padding: 30px 0;
+            padding: 25px 0;
             color: #777;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border-top: 1px solid #eee;
-            margin-top: 30px;
+            margin-top: 20px;
         }
         
         .heart {
@@ -328,31 +369,65 @@
             20% { transform: scale(1); }
         }
         
-        @media (max-width: 768px) {
+        /* 针对非常小的手机屏幕 */
+        @media (max-width: 360px) {
+            .container {
+                padding: 12px;
+            }
+            
             h1 {
-                font-size: 2rem;
+                font-size: 1.6rem;
             }
             
             .card {
-                padding: 20px;
-            }
-            
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .reward-table th, .reward-table td {
-                padding: 12px 8px;
-                font-size: 0.9rem;
+                padding: 16px;
             }
             
             .quick-steps {
-                flex-direction: column;
+                grid-template-columns: 1fr;
             }
             
-            .quick-step-btn {
-                width: 100%;
+            .result-amount {
+                font-size: 2.5rem;
             }
+        }
+        
+        /* 针对平板或大屏手机 */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .quick-steps {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* 防止iOS输入框放大问题 */
+        @media (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
+        
+        /* 优化滚动条 */
+        .reward-table-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .reward-table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .reward-table-container::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+        
+        .reward-table-container::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
         }
     </style>
 </head>
@@ -360,24 +435,24 @@
     <div class="container">
         <header>
             <h1><i class="fas fa-heartbeat"></i> 孕期步数激励计划</h1>
-            <p class="subtitle">安全第一，健康相伴 · 分段式步数激励，科学预防血栓，让孕期更轻松</p>
+            <p class="subtitle">安全第一，健康相伴 · 分段式步数激励，科学预防血栓</p>
         </header>
         
-        <!-- 计算器卡片 - 现在放在安全原则之前 -->
+        <!-- 计算器卡片 -->
         <div class="card calculator">
             <h2 class="card-title"><i class="fas fa-calculator"></i> 步数奖励计算器</h2>
-            <p>输入您今天的步数，系统将自动计算奖励金额。如有身体不适，请勾选下方选项。</p>
+            <p style="font-size: 0.95rem; margin-bottom: 15px; color: #666;">输入今日步数，自动计算奖励金额</p>
             
             <div class="quick-steps">
-                <button class="quick-step-btn" data-steps="4000">4000步<br><small>努力奖</small></button>
-                <button class="quick-step-btn" data-steps="6000">6000步<br><small>达标基准</small></button>
-                <button class="quick-step-btn" data-steps="8000">8000步<br><small>优秀奖</small></button>
-                <button class="quick-step-btn" data-steps="10000">10000步<br><small>封顶大奖</small></button>
+                <button class="quick-step-btn" data-steps="4000">4000步<small>努力奖</small></button>
+                <button class="quick-step-btn" data-steps="6000">6000步<small>达标基准</small></button>
+                <button class="quick-step-btn" data-steps="8000">8000步<small>优秀奖</small></button>
+                <button class="quick-step-btn" data-steps="10000">10000步<small>封顶大奖</small></button>
             </div>
             
             <div class="input-group">
                 <label for="steps">今日步数（步）</label>
-                <input type="number" id="steps" min="0" max="20000" value="0" placeholder="请输入今日步数">
+                <input type="number" id="steps" min="0" max="20000" value="0" placeholder="输入步数">
             </div>
             
             <div class="checkbox-group">
@@ -393,14 +468,14 @@
                 <p class="result-text">今日奖励金额</p>
                 <div class="result-amount" id="result-amount">0 元</div>
                 <p class="result-detail" id="result-detail">请输入步数并点击计算按钮</p>
-                <div id="penalty-notice" class="penalty-notice"></div>
+                <div id="penalty-notice" class="penalty-notice" style="display: none;"></div>
             </div>
             
             <div class="expert-tip">
                 <i class="fas fa-stethoscope"></i>
                 <div class="expert-tip-content">
                     <h3>专家建议</h3>
-                    <p>鉴于帆状胎盘，强烈建议将8000步设为"最佳舒适区"，不要过度诱导冲刺10000步，以免引发宫缩或意外。奖励机制旨在鼓励规律活动，而非追求极限。</p>
+                    <p>鉴于帆状胎盘，强烈建议将8000步设为"最佳舒适区"，不要过度诱导冲刺10000步，以免引发宫缩或意外。</p>
                 </div>
             </div>
         </div>
@@ -408,27 +483,38 @@
         <div class="card">
             <div class="safety-badge"><i class="fas fa-exclamation-triangle"></i> 核心原则：安全第一，拿钱第二</div>
             <h2 class="card-title"><i class="fas fa-shield-alt"></i> 安全注意事项</h2>
-            <p>针对帆状胎盘的特殊情况，运动安全是首要考虑因素。请务必遵守以下原则：</p>
             
             <div class="warning-box">
                 <div class="warning-title"><i class="fas fa-exclamation-circle"></i> 终止信号（立即停止并就医）</div>
-                <p>任何腹痛、阴道出血、胎动异常、头晕或宫缩情况出现时，请立即停止运动并就医。当天的计划自动视为"满分完成"！</p>
+                <p style="font-size: 0.95rem;">任何腹痛、阴道出血、胎动异常、头晕或宫缩情况出现时，请立即停止运动并就医。当天的计划自动视为"满分完成"！</p>
             </div>
             
             <div class="grid">
                 <div>
-                    <h3><i class="fas fa-walking"></i> 运动方式</h3>
-                    <p>• 跑步机最慢档（散步模式）<br>• 必须有人陪同或确保安全锁夹在衣服上<br>• 保持水分充足，环境通风</p>
+                    <h3 style="font-size: 1.1rem; color: #5c4bc4; margin-bottom: 8px;"><i class="fas fa-walking"></i> 运动方式</h3>
+                    <ul style="padding-left: 20px; font-size: 0.95rem;">
+                        <li>跑步机最慢档（散步模式）</li>
+                        <li>必须有人陪同或确保安全锁夹在衣服上</li>
+                        <li>保持水分充足，环境通风</li>
+                    </ul>
                 </div>
                 
                 <div>
-                    <h3><i class="fas fa-clock"></i> 执行策略</h3>
-                    <p>• "分期付款"式走路，分多次完成<br>• 注重频率而非单次时长<br>• 每次15-20分钟，每日3-4次</p>
+                    <h3 style="font-size: 1.1rem; color: #5c4bc4; margin-bottom: 8px;"><i class="fas fa-clock"></i> 执行策略</h3>
+                    <ul style="padding-left: 20px; font-size: 0.95rem;">
+                        <li>"分期付款"式走路，分多次完成</li>
+                        <li>注重频率而非单次时长</li>
+                        <li>每次15-20分钟，每日3-4次</li>
+                    </ul>
                 </div>
                 
                 <div>
-                    <h3><i class="fas fa-baby"></i> 特殊注意事项</h3>
-                    <p>• 帆状胎盘需格外注意运动强度<br>• 8000步为"最佳舒适区"<br>• 避免冲击10000步，防止宫缩风险</p>
+                    <h3 style="font-size: 1.1rem; color: #5c4bc4; margin-bottom: 8px;"><i class="fas fa-baby"></i> 特殊注意事项</h3>
+                    <ul style="padding-left: 20px; font-size: 0.95rem;">
+                        <li>帆状胎盘需格外注意运动强度</li>
+                        <li>8000步为"最佳舒适区"</li>
+                        <li>避免冲击10000步，防止宫缩风险</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -436,68 +522,70 @@
         <div class="card">
             <h2 class="card-title"><i class="fas fa-trophy"></i> 分段式奖惩机制</h2>
             
-            <table class="reward-table">
-                <thead>
-                    <tr>
-                        <th>步数区间</th>
-                        <th>完成状态</th>
-                        <th>奖励金额 (人民币)</th>
-                        <th>备注</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="step-range">0 - 3,999步</td>
-                        <td>未达标</td>
-                        <td class="reward-amount">0 元</td>
-                        <td>需要加油了，血栓风险在增加</td>
-                    </tr>
-                    <tr>
-                        <td class="step-range">4,000 - 5,999步</td>
-                        <td>努力奖</td>
-                        <td class="reward-amount">20 元</td>
-                        <td>虽然没达标，但有动起来，给个辛苦费</td>
-                    </tr>
-                    <tr class="highlight-row">
-                        <td class="step-range">6,000步</td>
-                        <td><strong>达标基准线</strong></td>
-                        <td class="reward-amount"><strong>50 元</strong></td>
-                        <td><strong>核心目标达成！</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="step-range">6,000 - 7,999步</td>
-                        <td>进阶奖</td>
-                        <td class="reward-amount">50元 + 额外每100步1元</td>
-                        <td>例如走7000步，给60元</td>
-                    </tr>
-                    <tr>
-                        <td class="step-range">8,000 - 9,999步</td>
-                        <td>优秀奖</td>
-                        <td class="reward-amount">80 元</td>
-                        <td>走到8000步直接一口价80元</td>
-                    </tr>
-                    <tr>
-                        <td class="step-range">10,000步</td>
-                        <td>封顶大奖</td>
-                        <td class="reward-amount">100 元</td>
-                        <td>强制封顶，不建议冲刺此目标</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="reward-table-container">
+                <table class="reward-table">
+                    <thead>
+                        <tr>
+                            <th>步数区间</th>
+                            <th>完成状态</th>
+                            <th>奖励金额</th>
+                            <th>备注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="step-range">0-3,999步</td>
+                            <td>未达标</td>
+                            <td class="reward-amount">0元</td>
+                            <td>需要加油了</td>
+                        </tr>
+                        <tr>
+                            <td class="step-range">4,000-5,999步</td>
+                            <td>努力奖</td>
+                            <td class="reward-amount">20元</td>
+                            <td>有动起来，给辛苦费</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td class="step-range">6,000步</td>
+                            <td><strong>达标基准线</strong></td>
+                            <td class="reward-amount"><strong>50元</strong></td>
+                            <td><strong>核心目标达成！</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="step-range">6,000-7,999步</td>
+                            <td>进阶奖</td>
+                            <td class="reward-amount">50元+额外每100步1元</td>
+                            <td>例：7000步给60元</td>
+                        </tr>
+                        <tr>
+                            <td class="step-range">8,000-9,999步</td>
+                            <td>优秀奖</td>
+                            <td class="reward-amount">80元</td>
+                            <td>一口价80元</td>
+                        </tr>
+                        <tr>
+                            <td class="step-range">10,000步</td>
+                            <td>封顶大奖</td>
+                            <td class="reward-amount">100元</td>
+                            <td>强制封顶</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             
             <div class="expert-tip">
                 <i class="fas fa-brain"></i>
                 <div class="expert-tip-content">
                     <h3>惩罚机制心理学原理</h3>
-                    <p>如果当天无身体不适但步数低于4000步，需要向"宝宝出生储备金"转账20元。这钱没丢，是给孩子的，她不会太心疼，但会有"我要把这钱赚回来"的动力，形成正向激励循环。</p>
+                    <p>如果当天无身体不适但步数低于4000步，需要向"宝宝出生储备金"转账20元。这钱没丢，是给孩子的，她不会太心疼，但会有"我要把这钱赚回来"的动力。</p>
                 </div>
             </div>
         </div>
         
         <footer>
-            <p>本计划专为孕期健康设计，特别考虑帆状胎盘情况。所有运动前请咨询医生。</p>
+            <p style="margin-bottom: 8px;">本计划专为孕期健康设计，特别考虑帆状胎盘情况。所有运动前请咨询医生。</p>
             <p>祝您和宝宝健康平安 <span class="heart">❤</span></p>
-            <p>© 2023 孕期健康激励计划</p>
+            <p style="margin-top: 15px; font-size: 0.8rem;">© 2023 孕期健康激励计划</p>
         </footer>
     </div>
 
@@ -567,6 +655,11 @@
             calculateBtn.addEventListener('click', function() {
                 const steps = parseInt(stepsInput.value) || 0;
                 updateResult(steps);
+                
+                // 震动反馈（如果设备支持）
+                if (navigator.vibrate) {
+                    navigator.vibrate(30);
+                }
             });
             
             // 快速步数按钮点击事件
@@ -576,8 +669,10 @@
                     stepsInput.value = steps;
                     updateResult(steps);
                     
-                    // 滚动到结果区域
-                    resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    // 震动反馈（如果设备支持）
+                    if (navigator.vibrate) {
+                        navigator.vibrate(20);
+                    }
                 });
             });
             
@@ -585,12 +680,12 @@
             function updateResult(steps) {
                 // 验证步数范围
                 if (steps < 0) {
-                    alert("步数不能为负数");
+                    showToast("步数不能为负数");
                     return;
                 }
                 
                 if (steps > 20000) {
-                    alert("步数过高，请确认输入正确");
+                    showToast("步数过高，请确认输入正确");
                     return;
                 }
                 
@@ -605,7 +700,6 @@
                     penaltyNotice.textContent = result.penaltyText;
                     penaltyNotice.style.display = "block";
                 } else {
-                    penaltyNotice.textContent = "";
                     penaltyNotice.style.display = "none";
                 }
                 
@@ -620,7 +714,70 @@
                 } else {
                     resultAmount.style.color = "#5c4bc4";
                 }
+                
+                // 自动滚动到结果区域（如果结果不在视图中）
+                if (!isElementInViewport(resultBox)) {
+                    resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
             }
+            
+            // 检查元素是否在视口中
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+            
+            // 显示Toast消息
+            function showToast(message) {
+                // 如果已有toast，先移除
+                const existingToast = document.querySelector('.toast-message');
+                if (existingToast) {
+                    existingToast.remove();
+                }
+                
+                const toast = document.createElement('div');
+                toast.className = 'toast-message';
+                toast.textContent = message;
+                toast.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(0,0,0,0.8);
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    z-index: 1000;
+                    font-size: 0.95rem;
+                    max-width: 90%;
+                    text-align: center;
+                    animation: fadeInOut 3s ease;
+                `;
+                
+                document.body.appendChild(toast);
+                
+                // 3秒后移除
+                setTimeout(() => {
+                    toast.remove();
+                }, 3000);
+            }
+            
+            // 添加CSS动画
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0% { opacity: 0; top: 10px; }
+                    10% { opacity: 1; top: 20px; }
+                    90% { opacity: 1; top: 20px; }
+                    100% { opacity: 0; top: 10px; }
+                }
+            `;
+            document.head.appendChild(style);
             
             // 身体不适复选框变化事件
             discomfortCheckbox.addEventListener('change', function() {
@@ -651,6 +808,13 @@
             if (!stepsInput.value) {
                 stepsInput.value = "0";
             }
+            
+            // 防止键盘弹出时页面内容被推上去
+            window.addEventListener('resize', function() {
+                if (document.activeElement.tagName === 'INPUT') {
+                    document.activeElement.scrollIntoView({ block: 'center' });
+                }
+            });
         });
     </script>
 </body>
