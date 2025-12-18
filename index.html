@@ -118,8 +118,37 @@
             background: linear-gradient(135deg, #f0f4ff 0%, #e8f0ff 100%);
         }
         
+        .input-mode-toggle {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #5c4bc4;
+        }
+        
+        .mode-btn {
+            flex: 1;
+            padding: 12px 5px;
+            text-align: center;
+            background: white;
+            color: #5c4bc4;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .mode-btn.active {
+            background: #5c4bc4;
+            color: white;
+        }
+        
         .input-group {
             margin-bottom: 20px;
+        }
+        
+        .input-group.hidden {
+            display: none;
         }
         
         label {
@@ -144,6 +173,13 @@
         input[type="number"]:focus {
             border-color: #5c4bc4;
             outline: none;
+        }
+        
+        .conversion-info {
+            display: block;
+            margin-top: 5px;
+            color: #888;
+            font-size: 0.85rem;
         }
         
         .checkbox-group {
@@ -186,14 +222,14 @@
             box-shadow: 0 4px 12px rgba(92, 75, 196, 0.4);
         }
         
-        .quick-steps {
+        .quick-inputs {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
             margin-bottom: 20px;
         }
         
-        .quick-step-btn {
+        .quick-btn {
             padding: 12px 8px;
             background: #e8f0ff;
             border: 2px solid #5c4bc4;
@@ -207,13 +243,13 @@
             -webkit-tap-highlight-color: rgba(92, 75, 196, 0.2);
         }
         
-        .quick-step-btn:active {
+        .quick-btn:active {
             background: #5c4bc4;
             color: white;
             transform: translateY(-2px);
         }
         
-        .quick-step-btn small {
+        .quick-btn small {
             display: block;
             font-weight: normal;
             font-size: 0.8rem;
@@ -383,7 +419,7 @@
                 padding: 16px;
             }
             
-            .quick-steps {
+            .quick-inputs {
                 grid-template-columns: 1fr;
             }
             
@@ -399,7 +435,7 @@
                 margin: 0 auto;
             }
             
-            .quick-steps {
+            .quick-inputs {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
@@ -435,24 +471,67 @@
     <div class="container">
         <header>
             <h1><i class="fas fa-heartbeat"></i> 孕期步数激励计划</h1>
-            <p class="subtitle">安全第一，健康相伴 · 分段式步数激励，科学预防血栓</p>
+            <p class="subtitle">安全第一，健康相伴 · 步数/时间双模式计算</p>
         </header>
         
         <!-- 计算器卡片 -->
         <div class="card calculator">
-            <h2 class="card-title"><i class="fas fa-calculator"></i> 步数奖励计算器</h2>
-            <p style="font-size: 0.95rem; margin-bottom: 15px; color: #666;">输入今日步数，自动计算奖励金额</p>
+            <h2 class="card-title"><i class="fas fa-calculator"></i> 步数/时间计算器</h2>
+            <p style="font-size: 0.95rem; margin-bottom: 15px; color: #666;">输入今日步数或走路时间，自动计算奖励金额</p>
             
-            <div class="quick-steps">
-                <button class="quick-step-btn" data-steps="4000">4000步<small>努力奖</small></button>
-                <button class="quick-step-btn" data-steps="6000">6000步<small>达标基准</small></button>
-                <button class="quick-step-btn" data-steps="8000">8000步<small>优秀奖</small></button>
-                <button class="quick-step-btn" data-steps="10000">10000步<small>封顶大奖</small></button>
+            <!-- 输入模式切换 -->
+            <div class="input-mode-toggle">
+                <div class="mode-btn active" id="mode-steps">
+                    <i class="fas fa-walking"></i> 按步数计算
+                </div>
+                <div class="mode-btn" id="mode-time">
+                    <i class="fas fa-clock"></i> 按时间计算
+                </div>
             </div>
             
-            <div class="input-group">
+            <!-- 步数输入模式 -->
+            <div class="input-group" id="steps-input-group">
                 <label for="steps">今日步数（步）</label>
                 <input type="number" id="steps" min="0" max="20000" value="0" placeholder="输入步数">
+                <span class="conversion-info">约 100 步 ≈ 1 分钟散步</span>
+            </div>
+            
+            <!-- 时间输入模式 -->
+            <div class="input-group hidden" id="time-input-group">
+                <label for="time">走路时间（分钟）</label>
+                <input type="number" id="time" min="0" max="200" value="0" placeholder="输入分钟数">
+                <span class="conversion-info">约 1 分钟 ≈ 100 步</span>
+            </div>
+            
+            <!-- 快速输入按钮 -->
+            <div class="quick-inputs">
+                <!-- 步数模式按钮 -->
+                <button class="quick-btn steps-mode-btn" data-steps="4000" data-time="40">
+                    4000步<small>努力奖 / 40分钟</small>
+                </button>
+                <button class="quick-btn steps-mode-btn" data-steps="6000" data-time="60">
+                    6000步<small>达标基准 / 60分钟</small>
+                </button>
+                <button class="quick-btn steps-mode-btn" data-steps="8000" data-time="80">
+                    8000步<small>优秀奖 / 80分钟</small>
+                </button>
+                <button class="quick-btn steps-mode-btn" data-steps="10000" data-time="100">
+                    10000步<small>封顶奖 / 100分钟</small>
+                </button>
+                
+                <!-- 时间模式按钮 -->
+                <button class="quick-btn time-mode-btn hidden" data-steps="4000" data-time="40">
+                    40分钟<small>约4000步 / 努力奖</small>
+                </button>
+                <button class="quick-btn time-mode-btn hidden" data-steps="6000" data-time="60">
+                    60分钟<small>约6000步 / 达标基准</small>
+                </button>
+                <button class="quick-btn time-mode-btn hidden" data-steps="8000" data-time="80">
+                    80分钟<small>约8000步 / 优秀奖</small>
+                </button>
+                <button class="quick-btn time-mode-btn hidden" data-steps="10000" data-time="100">
+                    100分钟<small>约10000步 / 封顶奖</small>
+                </button>
             </div>
             
             <div class="checkbox-group">
@@ -467,7 +546,7 @@
             <div class="result-box" id="result-box">
                 <p class="result-text">今日奖励金额</p>
                 <div class="result-amount" id="result-amount">0 元</div>
-                <p class="result-detail" id="result-detail">请输入步数并点击计算按钮</p>
+                <p class="result-detail" id="result-detail">请选择模式并输入数值</p>
                 <div id="penalty-notice" class="penalty-notice" style="display: none;"></div>
             </div>
             
@@ -475,7 +554,7 @@
                 <i class="fas fa-stethoscope"></i>
                 <div class="expert-tip-content">
                     <h3>专家建议</h3>
-                    <p>鉴于帆状胎盘，强烈建议将8000步设为"最佳舒适区"，不要过度诱导冲刺10000步，以免引发宫缩或意外。</p>
+                    <p>鉴于帆状胎盘，强烈建议将8000步（约80分钟）设为"最佳舒适区"，不要过度诱导冲刺10000步（约100分钟），以免引发宫缩或意外。</p>
                 </div>
             </div>
         </div>
@@ -512,8 +591,8 @@
                     <h3 style="font-size: 1.1rem; color: #5c4bc4; margin-bottom: 8px;"><i class="fas fa-baby"></i> 特殊注意事项</h3>
                     <ul style="padding-left: 20px; font-size: 0.95rem;">
                         <li>帆状胎盘需格外注意运动强度</li>
-                        <li>8000步为"最佳舒适区"</li>
-                        <li>避免冲击10000步，防止宫缩风险</li>
+                        <li>8000步（约80分钟）为"最佳舒适区"</li>
+                        <li>避免冲击10000步（约100分钟），防止宫缩风险</li>
                     </ul>
                 </div>
             </div>
@@ -526,7 +605,7 @@
                 <table class="reward-table">
                     <thead>
                         <tr>
-                            <th>步数区间</th>
+                            <th>步数/时间</th>
                             <th>完成状态</th>
                             <th>奖励金额</th>
                             <th>备注</th>
@@ -534,37 +613,37 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="step-range">0-3,999步</td>
+                            <td class="step-range">0-3,999步<br><small>或 0-39分钟</small></td>
                             <td>未达标</td>
                             <td class="reward-amount">0元</td>
                             <td>需要加油了</td>
                         </tr>
                         <tr>
-                            <td class="step-range">4,000-5,999步</td>
+                            <td class="step-range">4,000-5,999步<br><small>或 40-59分钟</small></td>
                             <td>努力奖</td>
                             <td class="reward-amount">20元</td>
                             <td>有动起来，给辛苦费</td>
                         </tr>
                         <tr class="highlight-row">
-                            <td class="step-range">6,000步</td>
+                            <td class="step-range">6,000步<br><small>或 60分钟</small></td>
                             <td><strong>达标基准线</strong></td>
                             <td class="reward-amount"><strong>50元</strong></td>
                             <td><strong>核心目标达成！</strong></td>
                         </tr>
                         <tr>
-                            <td class="step-range">6,000-7,999步</td>
+                            <td class="step-range">6,000-7,999步<br><small>或 60-79分钟</small></td>
                             <td>进阶奖</td>
                             <td class="reward-amount">50元+额外每100步1元</td>
                             <td>例：7000步给60元</td>
                         </tr>
                         <tr>
-                            <td class="step-range">8,000-9,999步</td>
+                            <td class="step-range">8,000-9,999步<br><small>或 80-99分钟</small></td>
                             <td>优秀奖</td>
                             <td class="reward-amount">80元</td>
                             <td>一口价80元</td>
                         </tr>
                         <tr>
-                            <td class="step-range">10,000步</td>
+                            <td class="step-range">10,000步<br><small>或 100分钟</small></td>
                             <td>封顶大奖</td>
                             <td class="reward-amount">100元</td>
                             <td>强制封顶</td>
@@ -577,7 +656,7 @@
                 <i class="fas fa-brain"></i>
                 <div class="expert-tip-content">
                     <h3>惩罚机制心理学原理</h3>
-                    <p>如果当天无身体不适但步数低于4000步，需要向"宝宝出生储备金"转账20元。这钱没丢，是给孩子的，她不会太心疼，但会有"我要把这钱赚回来"的动力。</p>
+                    <p>如果当天无身体不适但步数低于4000步（或时间少于40分钟），需要向"宝宝出生储备金"转账20元。这钱没丢，是给孩子的，她不会太心疼，但会有"我要把这钱赚回来"的动力。</p>
                 </div>
             </div>
         </div>
@@ -591,14 +670,94 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // 获取DOM元素
             const stepsInput = document.getElementById('steps');
+            const timeInput = document.getElementById('time');
             const discomfortCheckbox = document.getElementById('discomfort');
             const calculateBtn = document.getElementById('calculate-btn');
             const resultBox = document.getElementById('result-box');
             const resultAmount = document.getElementById('result-amount');
             const resultDetail = document.getElementById('result-detail');
             const penaltyNotice = document.getElementById('penalty-notice');
-            const quickStepBtns = document.querySelectorAll('.quick-step-btn');
+            
+            // 模式切换相关元素
+            const modeStepsBtn = document.getElementById('mode-steps');
+            const modeTimeBtn = document.getElementById('mode-time');
+            const stepsInputGroup = document.getElementById('steps-input-group');
+            const timeInputGroup = document.getElementById('time-input-group');
+            
+            // 快速按钮
+            const stepsModeBtns = document.querySelectorAll('.steps-mode-btn');
+            const timeModeBtns = document.querySelectorAll('.time-mode-btn');
+            
+            // 当前模式：'steps' 或 'time'
+            let currentMode = 'steps';
+            
+            // 切换输入模式
+            modeStepsBtn.addEventListener('click', function() {
+                if (currentMode === 'time') {
+                    currentMode = 'steps';
+                    modeStepsBtn.classList.add('active');
+                    modeTimeBtn.classList.remove('active');
+                    stepsInputGroup.classList.remove('hidden');
+                    timeInputGroup.classList.add('hidden');
+                    
+                    // 切换快速按钮显示
+                    stepsModeBtns.forEach(btn => btn.classList.remove('hidden'));
+                    timeModeBtns.forEach(btn => btn.classList.add('hidden'));
+                    
+                    // 自动计算当前步数对应的结果
+                    const steps = parseInt(stepsInput.value) || 0;
+                    updateResult(steps);
+                }
+            });
+            
+            modeTimeBtn.addEventListener('click', function() {
+                if (currentMode === 'steps') {
+                    currentMode = 'time';
+                    modeTimeBtn.classList.add('active');
+                    modeStepsBtn.classList.remove('active');
+                    timeInputGroup.classList.remove('hidden');
+                    stepsInputGroup.classList.add('hidden');
+                    
+                    // 切换快速按钮显示
+                    timeModeBtns.forEach(btn => btn.classList.remove('hidden'));
+                    stepsModeBtns.forEach(btn => btn.classList.add('hidden'));
+                    
+                    // 自动计算当前时间对应的结果
+                    const time = parseInt(timeInput.value) || 0;
+                    const steps = time * 100; // 转换为步数
+                    updateResult(steps);
+                }
+            });
+            
+            // 快速按钮点击事件
+            stepsModeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const steps = parseInt(this.getAttribute('data-steps'));
+                    stepsInput.value = steps;
+                    updateResult(steps);
+                    
+                    // 震动反馈（如果设备支持）
+                    if (navigator.vibrate) {
+                        navigator.vibrate(20);
+                    }
+                });
+            });
+            
+            timeModeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const time = parseInt(this.getAttribute('data-time'));
+                    timeInput.value = time;
+                    const steps = time * 100;
+                    updateResult(steps);
+                    
+                    // 震动反馈（如果设备支持）
+                    if (navigator.vibrate) {
+                        navigator.vibrate(20);
+                    }
+                });
+            });
             
             // 奖励计算函数
             function calculateReward(steps) {
@@ -653,7 +812,15 @@
             
             // 计算按钮点击事件
             calculateBtn.addEventListener('click', function() {
-                const steps = parseInt(stepsInput.value) || 0;
+                let steps = 0;
+                
+                if (currentMode === 'steps') {
+                    steps = parseInt(stepsInput.value) || 0;
+                } else {
+                    const time = parseInt(timeInput.value) || 0;
+                    steps = time * 100; // 时间转换为步数
+                }
+                
                 updateResult(steps);
                 
                 // 震动反馈（如果设备支持）
@@ -662,25 +829,11 @@
                 }
             });
             
-            // 快速步数按钮点击事件
-            quickStepBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const steps = parseInt(this.getAttribute('data-steps'));
-                    stepsInput.value = steps;
-                    updateResult(steps);
-                    
-                    // 震动反馈（如果设备支持）
-                    if (navigator.vibrate) {
-                        navigator.vibrate(20);
-                    }
-                });
-            });
-            
             // 更新结果函数
             function updateResult(steps) {
                 // 验证步数范围
                 if (steps < 0) {
-                    showToast("步数不能为负数");
+                    showToast("数值不能为负数");
                     return;
                 }
                 
@@ -694,7 +847,17 @@
                 
                 // 更新结果显示
                 resultAmount.textContent = result.reward + " 元";
-                resultDetail.textContent = result.detail;
+                
+                // 根据当前模式调整显示详情
+                let modeDetail = "";
+                if (currentMode === 'steps') {
+                    modeDetail = `今日步数：${steps}步`;
+                } else {
+                    const time = Math.round(steps / 100);
+                    modeDetail = `今日走路：${time}分钟（约${steps}步）`;
+                }
+                
+                resultDetail.textContent = `${modeDetail} · ${result.detail}`;
                 
                 if (result.penaltyText) {
                     penaltyNotice.textContent = result.penaltyText;
@@ -782,24 +945,47 @@
             // 身体不适复选框变化事件
             discomfortCheckbox.addEventListener('change', function() {
                 if (this.checked) {
-                    // 如果勾选了身体不适，将步数设置为0并禁用输入
+                    // 如果勾选了身体不适，将输入值设置为0并禁用输入
                     stepsInput.value = "0";
+                    timeInput.value = "0";
                     stepsInput.disabled = true;
+                    timeInput.disabled = true;
                     stepsInput.style.backgroundColor = "#f5f5f5";
+                    timeInput.style.backgroundColor = "#f5f5f5";
                     
                     // 自动计算并显示结果
                     updateResult(0);
                 } else {
                     // 取消勾选则恢复输入
                     stepsInput.disabled = false;
+                    timeInput.disabled = false;
                     stepsInput.style.backgroundColor = "white";
+                    timeInput.style.backgroundColor = "white";
+                    
+                    // 根据当前模式重新计算
+                    if (currentMode === 'steps') {
+                        const steps = parseInt(stepsInput.value) || 0;
+                        updateResult(steps);
+                    } else {
+                        const time = parseInt(timeInput.value) || 0;
+                        const steps = time * 100;
+                        updateResult(steps);
+                    }
                 }
             });
             
             // 输入框变化事件，自动更新结果
             stepsInput.addEventListener('input', function() {
-                const steps = parseInt(this.value) || 0;
-                if (steps > 0 && !discomfortCheckbox.checked) {
+                if (currentMode === 'steps' && !discomfortCheckbox.checked) {
+                    const steps = parseInt(this.value) || 0;
+                    updateResult(steps);
+                }
+            });
+            
+            timeInput.addEventListener('input', function() {
+                if (currentMode === 'time' && !discomfortCheckbox.checked) {
+                    const time = parseInt(this.value) || 0;
+                    const steps = time * 100;
                     updateResult(steps);
                 }
             });
