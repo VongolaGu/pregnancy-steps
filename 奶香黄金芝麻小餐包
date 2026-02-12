@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奶香黄金芝麻小餐包 | 个人菜谱</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #fef9f3;
+            color: #5c4d3c;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #ffd8a6 0%, #ffb347 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: #5c3a1a;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            color: #7a5a3a;
+        }
+        
+        .recipe-meta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 8px 15px;
+            border-radius: 50px;
+        }
+        
+        .meta-item i {
+            color: #e67e22;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        h2 {
+            color: #d35400;
+            border-bottom: 3px solid #ffd8a6;
+            padding-bottom: 10px;
+            margin: 30px 0 20px;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #e67e22;
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .ingredient-category {
+            background-color: #fff9f0;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #ffb347;
+        }
+        
+        .ingredient-list {
+            list-style-type: none;
+            margin-top: 10px;
+        }
+        
+        .ingredient-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #ffd8a6;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .ingredient-name {
+            font-weight: 500;
+        }
+        
+        .ingredient-amount {
+            color: #e67e22;
+            font-weight: 600;
+        }
+        
+        .steps {
+            counter-reset: step-counter;
+            margin-top: 20px;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #f0e6d6;
+            align-items: flex-start;
+        }
+        
+        .step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-number {
+            background-color: #ffb347;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex-grow: 1;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #d35400;
+            font-size: 1.2rem;
+        }
+        
+        .step-details {
+            color: #5c4d3c;
+        }
+        
+        .step-image {
+            width: 200px;
+            height: 150px;
+            background-color: #f9f1e6;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b8a086;
+            margin-left: 20px;
+            flex-shrink: 0;
+            border: 1px dashed #e6d5c1;
+        }
+        
+        .step-image i {
+            font-size: 2.5rem;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .tip-card {
+            background-color: #fff9f0;
+            padding: 20px;
+            border-radius: 12px;
+            border-top: 5px solid #ffb347;
+        }
+        
+        .tip-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: #d35400;
+        }
+        
+        .tip-title i {
+            color: #e67e22;
+        }
+        
+        .baking-steps {
+            background-color: #fff5e6;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 5px solid #e67e22;
+        }
+        
+        .baking-step {
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+        
+        .baking-step:last-child {
+            margin-bottom: 0;
+        }
+        
+        .time-highlight {
+            background-color: #ffb347;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #b8a086;
+            font-size: 0.9rem;
+            border-top: 1px solid #f0e6d6;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .step {
+                flex-direction: column;
+            }
+            
+            .step-image {
+                width: 100%;
+                height: 180px;
+                margin: 15px 0 0 0;
+            }
+            
+            .ingredients-grid, .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .recipe-meta {
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            header {
+                padding: 30px 20px;
+            }
+        }
+        
+        /* 悬浮返回按钮 */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #ffb347, #e67e22);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        
+        .back-btn:hover {
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 6px 25px rgba(230, 126, 34, 0.5);
+        }
+        
+        .back-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* 适配小屏幕时调整返回按钮位置 */
+        @media (max-width: 768px) {
+            .back-btn {
+                top: 15px;
+                left: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 悬浮返回主页按钮 -->
+    <a href="index.html" class="back-btn" title="返回主页">
+        <i class="fas fa-home"></i>
+    </a>
+    
+    <div class="container">
+        <header>
+            <h1>奶香黄金芝麻小餐包</h1>
+            <p class="subtitle">松软香甜的自发粉小餐包，金黄的外皮裹满芝麻，奶香浓郁，制作简单，适合家庭烘焙新手！</p>
+            
+            <div class="recipe-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>准备时间: 30分钟</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-temperature-high"></i>
+                    <span>烘烤时间: 18分钟</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-bread-slice"></i>
+                    <span>份量: 12个小餐包</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-fire"></i>
+                    <span>难度: 简单</span>
+                </div>
+            </div>
+        </header>
+        
+        <div class="content">
+            <section class="section">
+                <h2><i class="fas fa-utensils"></i> 所需工具</h2>
+                <div class="ingredient-category">
+                    <ul class="ingredient-list">
+                        <li>电子秤</li>
+                        <li>大号搅拌盆</li>
+                        <li>烘焙油纸</li>
+                        <li>烤盘（约28×28cm）</li>
+                        <li>烤箱</li>
+                        <li>刷子</li>
+                        <li>保鲜膜</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2><i class="fas fa-shopping-basket"></i> 所需食材</h2>
+                <div class="ingredients-grid">
+                    <div class="ingredient-category">
+                        <h3>主面团</h3>
+                        <ul class="ingredient-list">
+                            <li>
+                                <span class="ingredient-name">自发小麦粉</span>
+                                <span class="ingredient-amount">650克</span>
+                            </li>
+                            <li>
+                                <span class="ingredient-name">温牛奶（约35°C）</span>
+                                <span class="ingredient-amount">250毫升</span>
+                            </li>
+                            <li>
+                                <span class="ingredient-name">细砂糖</span>
+                                <span class="ingredient-amount">50克</span>
+                            </li>
+                            <li>
+                                <span class="ingredient-name">鸡蛋（室温）</span>
+                                <span class="ingredient-amount">1个</span>
+                            </li>
+                            <li>
+                                <span class="ingredient-name">植物油</span>
+                                <span class="ingredient-amount">25毫升</span>
+                            </li>
+                            <li>
+                                <span class="ingredient-name">盐</span>
+                                <span class="ingredient-amount">2克</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ingredient-category">
+                        <h3>表面装饰</h3>
+                        <ul class="ingredient-list">
+                            <li>
+                                <span class="ingredient-name">牛奶（刷表面用）</span>
+                                <span class="ingredient-amount">适量</span>
+                            </li>
+                            <li>
+                                <span class="ingredient-name">全蛋液（1个鸡蛋打散）</span>
+                                <span class="ingredient-amount">适量</span>
+                            </li>
+                            <li>
+                                <span class="ingredient-name">黑芝麻</span>
+                                <span class="ingredient-amount">适量</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="ingredient-category">
+                        <h3>馅料（可选）</h3>
+                        <ul class="ingredient-list">
+                            <li>
+                                <span class="ingredient-name">豆沙/奶黄/椰蓉馅</span>
+                                <span class="ingredient-amount">约200克</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2><i class="fas fa-list-ol"></i> 详细步骤</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">混合湿料</div>
+                            <div class="step-details">
+                                <p>在搅拌盆中倒入250毫升温牛奶。加入25毫升植物油、1个鸡蛋、50克细砂糖和2克盐。搅拌均匀至糖盐溶解。</p>
+                            </div>
+                        </div>
+                        <div class="step-image">
+                            <i class="fas fa-blender"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">加入自发粉</div>
+                            <div class="step-details">
+                                <p>将650克自发小麦粉加入湿料中。搅拌至无干粉，形成粗糙面团。</p>
+                            </div>
+                        </div>
+                        <div class="step-image">
+                            <i class="fas fa-weight"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">揉面</div>
+                            <div class="step-details">
+                                <p>将面团移到操作台，揉8-10分钟至光滑有弹性。判断标准：面团柔软不粘手，能拉出较厚的膜。调整：太粘可加少量油（5毫升内），太干可加几滴牛奶。</p>
+                            </div>
+                        </div>
+                        <div class="step-image">
+                            <i class="fas fa-hand-rock"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">分割与整形</div>
+                            <div class="step-details">
+                                <p>将面团分成12等份（每份约75克），揉圆。松弛10分钟后，包入馅料（可选），再次揉圆。收口朝下放在铺有油纸的烤盘上，间隔3厘米。</p>
+                            </div>
+                        </div>
+                        <div class="step-image">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <div class="step-title">醒发</div>
+                            <div class="step-details">
+                                <p>烤盘放入烤箱，旁边放一碗热水。关闭烤箱门，醒发60-70分钟至1.5倍大。判断标准：轻按表面缓慢回弹。</p>
+                            </div>
+                        </div>
+                        <div class="step-image">
+                            <i class="fas fa-temperature-high"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <div class="step-title">烘烤（总时间18分钟）</div>
+                            <div class="step-details">
+                                <div class="baking-steps">
+                                    <div class="baking-step"><span class="time-highlight">预热</span>烤箱：上火175°C/下火165°C（家用烤箱170°C）。</div>
+                                    <div class="baking-step"><span class="time-highlight">第一次刷牛奶</span>：在醒发好的面团表面刷一层薄牛奶。</div>
+                                    <div class="baking-step"><span class="time-highlight">放入烤箱</span>，设置13分钟计时。</div>
+                                    <div class="baking-step"><span class="time-highlight">烤3分钟后</span>：取出快速刷第二次牛奶，放回烤箱继续烤。</div>
+                                    <div class="baking-step"><span class="time-highlight">烤13分钟结束</span>：取出，刷全蛋液，撒黑芝麻（可选）。</div>
+                                    <div class="baking-step"><span class="time-highlight">调整温度</span>：烤箱调至上火160°C/下火145°C（或整体150°C）。</div>
+                                    <div class="baking-step"><span class="time-highlight">继续烤5分钟</span>：放回烤箱烤5分钟，总时间18分钟。</div>
+                                    <div class="baking-step"><span class="time-highlight">判断熟度</span>：表面金黄，牙签插入中心无粘连。</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-image">
+                            <i class="fas fa-oven"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <div class="step-title">冷却与保存</div>
+                            <div class="step-details">
+                                <p>立即将面包移至烤网，完全冷却后密封保存。室温可保存2-3天，冷冻可保存1个月。</p>
+                            </div>
+                        </div>
+                        <div class="step-image">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2><i class="fas fa-lightbulb"></i> 成功秘诀与小贴士</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-title">
+                            <i class="fas fa-clock"></i>
+                            <h3>时间把控</h3>
+                        </div>
+                        <p>使用计时器，严格按照3分钟、13分钟的时间节点操作。刷牛奶和蛋液时动作要快，每次操作控制在30秒内，避免烤箱降温过多。</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-title">
+                            <i class="fas fa-thermometer-half"></i>
+                            <h3>温度调整</h3>
+                        </div>
+                        <p>若烤箱不能独立控温，全程170°C烤13分钟，刷蛋液后150°C烤5分钟。最后5分钟注意观察，避免上色过深。</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-title">
+                            <i class="fas fa-seedling"></i>
+                            <h3>自发粉特性</h3>
+                        </div>
+                        <p>自发粉已含膨松剂，不需再加酵母，开封后需密封防潮。使用自发粉揉面时间可稍短，无需追求"手套膜"，光滑有弹性即可。</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-title">
+                            <i class="fas fa-cloud-sun"></i>
+                            <h3>醒发控制</h3>
+                        </div>
+                        <p>冬天可延长醒发至90分钟，夏天可能只需50分钟，主要看状态而非死守时间。发酵至1.5倍大，轻按缓慢回弹即可。</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-title">
+                            <i class="fas fa-cookie-bite"></i>
+                            <h3>无馅版本</h3>
+                        </div>
+                        <p>可不包馅，在分割后直接揉圆，或在面团中加入葡萄干、蔓越莓等果干增加风味。</p>
+                    </div>
+                    
+                    <div class="tip-card">
+                        <div class="tip-title">
+                            <i class="fas fa-snowflake"></i>
+                            <h3>复热方法</h3>
+                        </div>
+                        <p>冷冻面包取出后，表面喷水，150°C烤5-8分钟即可恢复松软口感。</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>© 2023 个人菜谱博客 | 奶香黄金芝麻小餐包配方</p>
+            <p>温馨提示：菜谱中的图片位置为占位符，您可以在相应位置添加自己的步骤图片</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 简单的交互：点击步骤图片时显示提示
+        document.querySelectorAll('.step-image').forEach(image => {
+            image.addEventListener('click', function() {
+                const stepNumber = this.closest('.step').querySelector('.step-number').textContent;
+                alert(`这是第${stepNumber}步的图片位置，您可以在这里添加自己的步骤图片！`);
+            });
+        });
+        
+        // 当前年份更新
+        document.querySelector('footer p:first-child').innerHTML = `© ${new Date().getFullYear()} 个人菜谱博客 | 奶香黄金芝麻小餐包配方`;
+    </script>
+</body>
+</html>
